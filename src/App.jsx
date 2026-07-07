@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Stethoscope, Loader2, AlertCircle, User, AlertTriangle, CheckCircle, BookOpen, ShieldAlert, BarChart3 } from 'lucide-react'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { PDFParse } from 'pdf-parse'
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import './App.css'
 
 console.log("VITE_GEMINI_API_KEY:", import.meta.env.VITE_GEMINI_API_KEY ? "FOUND" : "MISSING");console.log(import.meta.env);
@@ -491,7 +492,7 @@ function App() {
     }
 
     // RAG Step 0: Parse and chunk the guideline PDF once, then cache chunks in memory.
-    PDFParse.setWorker('/node_modules/pdf-parse/dist/pdf-parse/web/pdf.worker.mjs')
+    PDFParse.setWorker(pdfWorkerUrl)
 
     const response = await fetch(GUIDELINE_PDF_URL)
     if (!response.ok) {
