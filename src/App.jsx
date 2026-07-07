@@ -4,6 +4,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import { PDFParse } from 'pdf-parse'
 import './App.css'
 
+console.log("VITE_GEMINI_API_KEY:", import.meta.env.VITE_GEMINI_API_KEY ? "FOUND" : "MISSING");console.log(import.meta.env);
+
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY)
 const GEMINI_MODEL_NAME = 'gemini-2.5-flash'
 const model = genAI.getGenerativeModel({
